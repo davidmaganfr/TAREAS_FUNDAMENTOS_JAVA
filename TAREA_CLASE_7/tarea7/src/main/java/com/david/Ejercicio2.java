@@ -1,6 +1,6 @@
 package com.david;
 
-public class Votaciones {
+public class Ejercicio2 {
     public static void main(String[] args) {
 
         String elige_candidato = Console.readText("Elige un candidato (A, B O C): ");
