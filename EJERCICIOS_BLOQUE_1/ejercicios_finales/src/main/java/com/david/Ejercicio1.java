@@ -1,9 +1,5 @@
 package com.david;
 
-/**
- * Hello world!
- *
- */
 public class Ejercicio1  {
     public static void main( String[] args ) {
         String name = Console.readText("Escribe tu nombre: ");
@@ -37,7 +33,6 @@ public class Ejercicio1  {
 
     public static void imprimirMensaje(String name, int edad) {
         System.out.println("Saludos " + name + " ya se que tienes " + edad + " años de edad");
-
     }
 }
 

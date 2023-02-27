@@ -45,6 +45,7 @@ public class Ejercicio3 {
         System.out.println("6-Mostrar el resultado de A*B");
         System.out.println("7-Mostrar el Array A al revés");
         System.out.println("8-Salir");
+
         int seleccion = Console.readInteger("Introduce una opción (1-8): ");
 
         while(seleccion != 8) {
@@ -74,7 +75,8 @@ public class Ejercicio3 {
                     System.out.println("Opción no válida");
                     break;
             }
-            System.out.println();
+
+            System.out.println(); /*Introducir un espacio en blanco para mayor legibilidad */
             seleccion = Console.readInteger("Introduce una opción (1-8): ");
         }
         System.out.println("Programa finalizado");
