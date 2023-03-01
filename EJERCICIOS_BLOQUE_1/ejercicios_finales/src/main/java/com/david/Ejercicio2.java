@@ -13,19 +13,27 @@ public class Ejercicio2 {
     public static void main(String[] args) {
         System.out.println("BIENVENIDO AL SORTEO DE EUROMILLONES:");
         int numero_premiado = random(1, 11);
-        int numero_jugado = Console.readInteger("Introduce un numero entre 1 y 10: ");
-        comprobarNumero(numero_premiado, numero_jugado);
+        boolean acierto;
+        do {
+            int numero_jugado = Console.readInteger("Introduce un numero entre 1 y 10: ");
+            acierto = comprobarNumero(numero_premiado, numero_jugado);
+            notificar(acierto);
+        } while (! acierto);
+    }
+
+    private static void notificar(boolean acierto) {
+        if (acierto) {
+            System.out.println("Has acertado el número");
+        } else {
+            System.out.println("Has fallado el número");
+        }
     }
 
     public static int random(int minInclusive, int maxExclusive) {
         return new java.util.Random().ints(minInclusive, maxExclusive).findFirst().getAsInt();
     }
 
-    public static void comprobarNumero(int numero, int numero_jugado) {
-        while (numero != numero_jugado) {
-            numero_jugado = Console.readInteger("Ohh... Intentalo de nuevo, introduce un numero entre 1 y 10: ");
-        }
-        System.out.println("Enhorabuena, eres el nuevo ganador del sorteo de Euromillones!");
-        System.out.println("El numero ganador es: " + numero);
+    public static boolean comprobarNumero(int numero, int numero_jugado) {
+        return numero == numero_jugado;
     }
 }

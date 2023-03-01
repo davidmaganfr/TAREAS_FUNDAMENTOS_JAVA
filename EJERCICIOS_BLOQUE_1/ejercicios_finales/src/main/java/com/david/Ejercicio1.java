@@ -2,14 +2,19 @@ package com.david;
 
 public class Ejercicio1  {
     public static void main( String[] args ) {
-        String name = Console.readText("Escribe tu nombre: ");
-        int day = Console.readInteger("Introduce tu dia de nacimiento: ");
-        int month = Console.readInteger("Introduce el numero de tu mes de nacimiento: ");
-        int year = Console.readInteger("Introduce tu año de nacimiento: ");
+        Client cli = readClientData();
+        int edad = calculoEdad(cli.year, cli.month, cli.day);
 
-        int edad = calculoEdad(year, month, day);
+        imprimirMensaje(cli.name, edad);
+    }
 
-        imprimirMensaje(name, edad);
+    private static Client readClientData() {
+        Client cli = new Client();
+        cli.name = Console.readText("Escribe tu nombre: ");
+        cli.day = Console.readInteger("Introduce tu dia de nacimiento: ");
+        cli.month = Console.readInteger("Introduce el numero de tu mes de nacimiento: ");
+        cli.year = Console.readInteger("Introduce tu año de nacimiento: ");
+        return cli;
     }
 
     public static int calculoEdad(int year, int month, int day) {
@@ -36,3 +41,7 @@ public class Ejercicio1  {
     }
 }
 
+class Client{
+    String name;
+    int day, month, year;
+}

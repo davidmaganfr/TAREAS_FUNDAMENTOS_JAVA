@@ -2,6 +2,7 @@ package com.david;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 /*
  * EJERCICIO 3
 Escribe un programa que defina dos array de enteros de 10 elementos, y que muestre el siguiente menú en una pantalla: 
@@ -31,10 +32,49 @@ Opción 8: debe finalizarse el programa.
 Después de ejecutarse cada tarea debes volver a mostrarse el menú.
  */
 public class Ejercicio3 {
+    static ArrayList<Integer> opcion_a = new ArrayList<Integer>(10);
+    static ArrayList<Integer> opcion_b = new ArrayList<Integer>(10);
     public static void main(String[] args) {
-        ArrayList<Integer> opcion_a = new ArrayList<Integer>(10);
-        ArrayList<Integer> opcion_b = new ArrayList<Integer>(10);
+        int seleccion;
+        boolean salir;
+        do{
+            seleccion =  presentarMenu();
+            salir = ejecutarSeleccion(seleccion);
+        } while (! salir);
+    }
 
+    private static boolean ejecutarSeleccion(int seleccion) {
+        switch (seleccion) {
+            case 1:
+                instanciarLista(opcion_a, 1, 50);
+                break; 
+            case 2:
+                instanciarLista(opcion_b, 1, 50);
+                break;
+            case 3:
+                mostrarLista(opcion_a);
+                break;
+            case 4:
+                mostrarLista(opcion_b);
+                break;
+            case 5:
+                mostrarSumaListas(opcion_a, opcion_b);
+                break;
+            case 6:
+                mostrarMultiplicacionListas(opcion_a, opcion_b);
+                break;
+            case 7:
+                invertirListaA(opcion_a);
+                break;
+            case 8:
+                return true;
+            default:
+                System.out.println("Opción no válida");
+                break;
+        }
+        return false; 
+    }
+    private static int presentarMenu() {
         System.out.println("MENU:");
         System.out.println("----------------------------------------");
         System.out.println("1-Cargar el array A");
@@ -45,65 +85,18 @@ public class Ejercicio3 {
         System.out.println("6-Mostrar el resultado de A*B");
         System.out.println("7-Mostrar el Array A al revés");
         System.out.println("8-Salir");
-
-        int seleccion = Console.readInteger("Introduce una opción (1-8): ");
-
-        while(seleccion != 8) {
-            switch (seleccion) {
-                case 1:
-                    instanciarListaA(opcion_a, 1, 50);
-                    break; 
-                case 2:
-                    instanciarListaB(opcion_b, 1, 50);
-                    break;
-                case 3:
-                    mostrarLista(opcion_a);
-                    break;
-                case 4:
-                    mostrarLista(opcion_b);
-                    break;
-                case 5:
-                    mostrarSumaListas(opcion_a, opcion_b);
-                    break;
-                case 6:
-                    mostrarMultiplicacionListas(opcion_a, opcion_b);
-                    break;
-                case 7:
-                    invertirListaA(opcion_a);
-                    break;
-                default:
-                    System.out.println("Opción no válida");
-                    break;
-            }
-
-            System.out.println(); /*Introducir un espacio en blanco para mayor legibilidad */
-            seleccion = Console.readInteger("Introduce una opción (1-8): ");
-        }
-        System.out.println("Programa finalizado");
+        return Console.readInteger("Introduce una opción (1-8): ");
     }
-    public static ArrayList<Integer> instanciarListaA(ArrayList<Integer> opcion_a, int numero_min, int numero_max) {
+    public static ArrayList<Integer> instanciarLista(ArrayList<Integer> opcion_a, int numero_min, int numero_max) {
         for(int i = 0; i < 10; i++) {
             int num_random = new java.util.Random().ints(numero_min, numero_max).findFirst().getAsInt();
             opcion_a.add(num_random);
         }
         return opcion_a;
     }
-    public static ArrayList<Integer> instanciarListaB(ArrayList<Integer> opcion_b, int numero_min, int numero_max) {
-        for(int i = 0; i < 10; i++) {
-            int num_random = new java.util.Random().ints(numero_min, numero_max).findFirst().getAsInt();
-            opcion_b.add(num_random);
-        }
-        return opcion_b;
-    }
+   
     private static void mostrarLista(ArrayList<Integer> lista) {
-        System.out.println("Los valores de la lista son:");
-        for(int i : lista) {
-            if(i != lista.get(9)){
-                System.out.print(String.valueOf(i) + ","); 
-            } else {
-                System.out.print(String.valueOf(i));
-            }
-        }
+        System.out.println("Los valores de la lista son:" + lista.stream().map(n->n.toString()).collect(Collectors.joining(", ")));
         System.out.println();
     }
     public static ArrayList<Integer> mostrarSumaListas(ArrayList<Integer> opcion_a, ArrayList<Integer> opcion_b) {
@@ -124,14 +117,10 @@ public class Ejercicio3 {
         mostrarLista(resultado_multiplicacion);
         return resultado_multiplicacion;
     }
-    private static void invertirListaA(ArrayList<Integer> opcion_a) {
+    private static void invertirListaA(ArrayList<Integer> lista) {
         System.out.println("Los valores de la lista A invertida son: ");
         for(int i= 9; i>=0; i--) {
-            if(i != 0) {
-                System.out.print(opcion_a.get(i).toString() + ", ");
-            } else {
-                System.out.print(opcion_a.get(i).toString());
-            }
+            System.out.print(opcion_a.get(i).toString());
         }
         System.out.println();
     }
