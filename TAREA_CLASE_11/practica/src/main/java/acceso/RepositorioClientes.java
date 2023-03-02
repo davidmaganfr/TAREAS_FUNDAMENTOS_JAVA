@@ -6,18 +6,14 @@ import java.util.List;
 import entidades.Cliente;
 
 public class RepositorioClientes {
-    private static RepositorioClientes repo = new RepositorioClientes();
-
-    public static RepositorioClientes getInstance(){
-        return repo;
-    }
+    public static RepositorioClientes repo = new RepositorioClientes();
 
     private static List<Cliente> almacen= new ArrayList();
 
-    private RepositorioClientes(){}
+    public RepositorioClientes(){}
 
     public void insertar(Cliente cliente) {
-        if (buscar(cliente.getCodigo() != null)){
+        if (buscar(cliente.getCodigo()) != null){
             throw new RuntimeException("Duplicidad de clave");
         }
         almacen.add(cliente);
@@ -38,8 +34,8 @@ public class RepositorioClientes {
         Cliente c= buscar(cliente.getCodigo());
         if(c==null) {
             return;
-        c.setNombre((cliente.getNombre()))
         }
+        c.setNombre((cliente.getNombre()));
     }
     public Cliente buscar(int codigo){
         for(Cliente cliente : almacen) {
