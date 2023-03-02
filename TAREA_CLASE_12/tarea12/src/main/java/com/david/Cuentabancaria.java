@@ -18,13 +18,17 @@ public class Cuentabancaria {
         this.num_cuenta = num_cuenta;
         this.titular = titular;
     }
+
+    public double getSaldo() {
+        return saldo;
+    }
     private void setSaldo(double cantidad) {
-        saldo += cantidad;
+        saldo = cantidad;
     }
     public void abrirCuenta(double cantidad){
         if(saldo < 0){
             saldo = cantidad;
-            operaciones.add(new Operacion("apertura", cantidad, LocalDateTime.now()));
+            operaciones.add(new Operacion(TipoOperacion.Apertura, cantidad, LocalDateTime.now()));
         } else {
             throw new RuntimeException();
         }
@@ -32,22 +36,22 @@ public class Cuentabancaria {
     public void ingresarDinero(double cantidad){
         if(cantidad<0)
             throw new RuntimeException();
-        setSaldo(cantidad);
-        operaciones.add(this.new Operacion("ingreso", cantidad, LocalDateTime.now()));
+        saldo += cantidad;
+        operaciones.add(this.new Operacion(TipoOperacion.Ingreso, cantidad, LocalDateTime.now()));
     }
     public void retirarDinero(double cantidad){
         if(cantidad<0)
             throw new RuntimeException();
-        setSaldo(-cantidad);
-        operaciones.add(new Operacion("retirada dinero", cantidad, LocalDateTime.now()));
+        saldo -= cantidad;
+        operaciones.add(new Operacion(TipoOperacion.Retirada, cantidad, LocalDateTime.now()));
     }
 
 public class Operacion{
-    private final String tipo;
+    private final TipoOperacion tipo;
     private final double cantidad;
     private final LocalDateTime fecha;
     
-    public Operacion(String tipo, double cantidad, LocalDateTime fecha) {
+    public Operacion(TipoOperacion tipo, double cantidad, LocalDateTime fecha) {
         this.tipo = tipo;
         this.cantidad = cantidad;
         this.fecha = fecha;
@@ -56,8 +60,8 @@ public class Operacion{
     public String toString() {
         return Cuentabancaria.this.titular + " ,tipo: " + tipo + " , cantidad: " + cantidad + ", fecha:" + fecha;
     }
-    
-    
 }
-    
 }
+enum TipoOperacion{Apertura, Ingreso, Retirada}
+
+

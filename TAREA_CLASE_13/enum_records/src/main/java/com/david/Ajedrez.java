@@ -15,7 +15,8 @@ public class Ajedrez {
        
         System.out.println(PiezasAjedrez.peonBlanco.toString()); //obtener el nombre del peon blanco
         System.out.println(PiezasAjedrez.caballoNegro.getDatos());//obtener el color y nombre del caballo negro
-        
+        System.out.println("Lista piezas blancas: " + piezasBlancas);
+        System.out.println("Lista piezas negras: " + piezasNegras);
     }
 
     public static List<PiezasAjedrez> listaPiezasBlancas(){
@@ -78,17 +79,6 @@ enum PiezasAjedrez {
         return new DatosPieza(this.nombre, this.color);
     }
 
-    public record DatosPieza(String nombre, String color) {}
-
-    public List<PiezasAjedrez> listaPiezasBlancas(){
-        List<PiezasAjedrez> lista = new ArrayList<>();
-        lista.add(peonBlanco);
-        lista.add(caballoBlanco);
-        lista.add(alfilBlanco);
-        lista.add(torreBlanco);
-        lista.add(reinaBlanco);
-        lista.add(reyBlanco);
-        return lista;
-    }
+    public record DatosPieza(String nombre, String color) {} // clase record
 
 }
