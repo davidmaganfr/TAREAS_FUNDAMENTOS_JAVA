@@ -12,5 +12,6 @@ public class MainApp
         System.out.println(alquiler_piso.precioAlquiler());
         System.out.println(alquiler_piso.getInquilino().getNombrecompleto());
         System.out.println(alquiler_piso.getPiso().getFecha());
+        tipo.
     }
 }
