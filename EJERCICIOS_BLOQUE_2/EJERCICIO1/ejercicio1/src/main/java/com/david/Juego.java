@@ -23,9 +23,9 @@ public class Juego {
     }
 }
 class Jugador {
-    private String gamer;
-    private int lives;
-    private Juego game;
+    protected String gamer;
+    protected int lives;
+    protected Juego game;
 
     public Jugador(String gamer, int lives, Juego game) {
         this.gamer = gamer;
@@ -38,11 +38,11 @@ class Jugador {
     public int getLives() {
         return lives;
     }
-    public void setLives(int lives) {
-        this.lives = substractLives(lives);
+    public void setLives() {
+        this.lives = substractLives();
     }
-    public int substractLives(int lives){
-        return this.lives - lives;
+    public int substractLives(){
+        return this.lives - 1;
     }
     public long endGame(){ //guarda el momento de finalizacion del juego en segundos
         return System.currentTimeMillis()/1000;
