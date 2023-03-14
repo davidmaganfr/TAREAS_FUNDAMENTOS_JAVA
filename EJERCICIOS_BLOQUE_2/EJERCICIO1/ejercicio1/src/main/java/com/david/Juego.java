@@ -32,6 +32,7 @@ class Jugador {
         this.lives = lives;
         this.game = game;
     }
+    
     public String getGamer() {
         return gamer;
     }
@@ -44,6 +45,9 @@ class Jugador {
     public int substractLives(){
         return this.lives - 1;
     }
+    public long start_game(){ // guarda el momento del comienzo del juego en segundos
+        return System.currentTimeMillis()/1000;
+    }   
     public long endGame(){ //guarda el momento de finalizacion del juego en segundos
         return System.currentTimeMillis()/1000;
     }
@@ -52,7 +56,9 @@ class Jugador {
         return true;
         } return false;
     }
-    public long start_game(){ // guarda el momento del comienzo del juego en segundos
-        return System.currentTimeMillis()/1000;
-    }   
+
+    public Juego getGame() {
+        return game;
+    }
+    
 }

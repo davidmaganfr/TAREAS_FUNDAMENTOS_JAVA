@@ -10,11 +10,8 @@ public class JuegoExt extends Juego{
 
 class JugadorExt extends Jugador{
     private int vidasIniciales = lives;
-    public JugadorExt(String gamer, int lives, Juego game) {
+    public JugadorExt(String gamer, int lives, JuegoExt game) {
         super(gamer, lives, game);
-        this.gamer = gamer;
-        this.lives = lives;
-        this.game = game;
     }
     public boolean quitaVida(){
         this.lives -= 1;
@@ -23,12 +20,16 @@ class JugadorExt extends Jugador{
     public void reiniciarPartida(){
         this.lives = vidasIniciales;
     }
-    public Record actualizaRecord(JuegoExt max){
-        if(this.lives == max.record ){
+    public Record actualizaRecord(){
+        JuegoExt gameact = (JuegoExt) this.getGame();
+        if(this.lives == gameact.record ){
             return Record.IGUALADO;
-        } else if(this.lives < max.record){
+        } else if(this.lives < gameact.record){
             return Record.MENOR;
-        } else return Record.BATIDO; 
+        } else {
+            gameact.record = this.lives;
+            return Record.BATIDO;
+        } 
     }
 enum Record {IGUALADO("Has igualado tu record"),
             BATIDO("Has batido tu record"),

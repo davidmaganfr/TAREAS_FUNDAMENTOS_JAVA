@@ -1,0 +1,6 @@
+digraph "com.david:trabajarconficheros:jar:1.0-SNAPSHOT" { 
+	"com.david:trabajarconficheros:jar:1.0-SNAPSHOT" -> "top.jfunc.json:json-gson:jar:1.8.3:compile" ; 
+	"com.david:trabajarconficheros:jar:1.0-SNAPSHOT" -> "org.projectlombok:lombok:jar:1.18.26:provided" ; 
+	"top.jfunc.json:json-gson:jar:1.8.3:compile" -> "top.jfunc.json:json-common:jar:1.8.2:compile" ; 
+	"top.jfunc.json:json-gson:jar:1.8.3:compile" -> "com.google.code.gson:gson:jar:2.8.5:compile" ; 
+ } 
